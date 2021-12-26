@@ -21,3 +21,24 @@ dotnet ef database update 0 (executar esse comando caso já tenho aplicar o migra
 dotnet ef migrations remove
 
 =============== 03 - SeedData ===============
+Existe 3 aborgagens para popular o banco de dados
+
+1 - Por código
+Veja a classe SeedDatabase
+
+2 - Por migrations
+Veja a migration seed-database
+Adicionar uma nova migration e dentro dos métodos Up e Down definir comandos SQL
+
+3 - Por HasData
+Veja ModelBuilderExtensions.SeedDatabase()
+Dentro do método OnModelCreating() na classe de context, adicionar modelBuilder.Entity<"ENTIDADE">().HasData()
+
+=============== 04 - Configurações - Convenções ===============
+- Chave Primária: o EF Core ira criar a coluna chave primária
+- Schema : o EF Core cria o schema padrão dbo
+- Colunas das tabelas: o EF Core cria os nomes das colunas com o mesmo nome da propriedade da classe
+- Tipos de dados das colunas: o tipo de dados vai depender de como o provedor do banco de dados mapeou o tipo de dados C# para o tipo de dados do banco de dados
+- Tabelas: o EF Core irá mapear uma entidade para uma tabela com o mesmo nome da propriedade DbSet<T>, 
+caso a entidade não tenha sido mapeado para um DbSet<T>, o EF Core ira criar a tabela com base nas propriedade de navegação. 
+Ver a classe cliente que tem a propriedade uma coleção de animais e não existe o DbSet<Animal> na classe de contexto.

@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - SeedData", "03 - SeedD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeedData.Console", "SeedData.Console\SeedData.Console.csproj", "{DA0861E2-D910-411B-AC22-88E369BCF271}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Configurações", "05 - Configurações", "{F7D13E36-F319-4C6F-BCC8-13093B69CAA1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Configurações", "04 - Configurações", "{F7D13E36-F319-4C6F-BCC8-13093B69CAA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Convencoes.Console", "Convencoes.Console\Convencoes.Console.csproj", "{1CC51A14-E409-4A4D-9EBF-5C5886605439}"
 EndProject
