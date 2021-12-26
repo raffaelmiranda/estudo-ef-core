@@ -21,5 +21,10 @@ namespace SeedData.Console.Data
         {
             optionsBuilder.UseSqlServer("Server=SLT-002411\\SQLEXPRESS;Database=VeterinariaDb;Trusted_Connection=True");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedDatabase();
+        }
     }
 }

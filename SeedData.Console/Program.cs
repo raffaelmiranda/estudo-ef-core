@@ -3,7 +3,7 @@ using SeedData.Console.Data;
 
 using (var db = new VeterinariaContext())
 {
-    //Console.WriteLine("Alimentando o banco de dados");
+    Console.WriteLine("Alimentando o banco de dados");
     //SeedDatabase.SeedData(db);
 
     var clientes = db.Clientes.ToList();
