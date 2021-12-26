@@ -5,19 +5,19 @@ Microsoft.EntityFrameworkCore.SqlServer
 Microsoft.EntityFrameworkCore.Tools
 
 =============== 01 - DBFirst ===============
-
-Feramenta Engenharia Reversa
 EF Core Power Tools
 
-Comando
+Executar o comando para criar o context a partir de um banco de dados
 dotnet ef dbcontext scaffold "Server=SLT-002411\SQLEXPRESS;Database=Northwind;Trusted_Connection=True" Microsoft.EntityFrameworkCore.SqlServer --output-dir Domain --context-dir Data
 dotnet ef dbcontext scaffold "Server=SLT-002411\SQLEXPRESS;Database=Northwind;Trusted_Connection=True" Microsoft.EntityFrameworkCore.SqlServer --output-dir Domain --context-dir Data --table Products --table Categories
 
 =============== 02 - CodeFirst ===============
-Criar o Migrations
+Executar o comando para criar o migrations
 dotnet ef migrations add initial 
 dotnet ef database update
 
-Reverter o Migrations
-dotnet ef database update 0 
+Executar o comando reverter o migrations
+dotnet ef database update 0 (executar esse comando caso já tenho aplicar o migrations)
 dotnet ef migrations remove
+
+=============== 03 - SeedData ===============
