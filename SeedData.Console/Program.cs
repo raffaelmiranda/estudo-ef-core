@@ -14,4 +14,13 @@ using (var db = new VeterinariaContext())
             Console.WriteLine($"{c.Nome}\t{c.DataCadastro}");
         }
     }
+
+    var animais = db.Animais.ToList();
+    if (animais.Count > 0)
+    {
+        foreach (var a in animais)
+        {
+            Console.WriteLine($"{a.Nome}\t{a.DataCadastro}");
+        }
+    }
 }
