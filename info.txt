@@ -1,0 +1,23 @@
+Instalar:
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+
+=============== 01 - DBFirst ===============
+
+Feramenta Engenharia Reversa
+EF Core Power Tools
+
+Comando
+dotnet ef dbcontext scaffold "Server=SLT-002411\SQLEXPRESS;Database=Northwind;Trusted_Connection=True" Microsoft.EntityFrameworkCore.SqlServer --output-dir Domain --context-dir Data
+dotnet ef dbcontext scaffold "Server=SLT-002411\SQLEXPRESS;Database=Northwind;Trusted_Connection=True" Microsoft.EntityFrameworkCore.SqlServer --output-dir Domain --context-dir Data --table Products --table Categories
+
+=============== 02 - CodeFirst ===============
+Criar o Migrations
+dotnet ef migrations add initial 
+dotnet ef database update
+
+Reverter o Migrations
+dotnet ef database update 0 
+dotnet ef migrations remove
