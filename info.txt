@@ -36,9 +36,30 @@ Dentro do método OnModelCreating() na classe de context, adicionar modelBuilder.
 
 =============== 04 - Configurações - Convenções ===============
 - Chave Primária: o EF Core ira criar a coluna chave primária
+- Chave Estrangeira: a chave estrangeira deve ter o mesmo tipo de dados que a propriedade chave primária da entidade principal
 - Schema : o EF Core cria o schema padrão dbo
 - Colunas das tabelas: o EF Core cria os nomes das colunas com o mesmo nome da propriedade da classe
 - Tipos de dados das colunas: o tipo de dados vai depender de como o provedor do banco de dados mapeou o tipo de dados C# para o tipo de dados do banco de dados
 - Tabelas: o EF Core irá mapear uma entidade para uma tabela com o mesmo nome da propriedade DbSet<T>, 
 caso a entidade não tenha sido mapeado para um DbSet<T>, o EF Core ira criar a tabela com base nas propriedade de navegação. 
 Ver a classe cliente que tem a propriedade uma coleção de animais e não existe o DbSet<Animal> na classe de contexto.
+
+Relacionamentos
+Has de ser combinada com um With para configurar um relacionamento válido
+
+Has
+	HasOne: usado nas propriedades de navegação de referência
+	HasMany: usado nas propriedades de navegação de coleção
+
+With
+	WithOne: usado nas propriedades de navegação de referência
+	WithMany: usado nas propriedades de navegação de coleção
+
+
+HasOne: Configura a parte UM do relacionamento, em que uma entidadade contém a propriedade de referência de outro tipo para relacionamentos UM-PARA-UM ou UM-PARA-MUITOS
+WithOne: É usado para configurar o lado único de um relacionamento UM-PARA-MUITOS ou UM-PARA-UM. Usando em conjunto com HASONE ou HASMANY.
+HasForeignKey: É usado para especificar qual propriedade é a chave estrangeira em um relacionamento
+
+Para um relacionamento UM-PARA-MUITOS
+- Se a chave estrangeira for obrigatória o relacionamento será obrigatório
+- Se a chave estrangeira for opcional o relacionamento será opcional
