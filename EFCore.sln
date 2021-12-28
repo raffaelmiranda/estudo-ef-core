@@ -23,9 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeedData.Console", "SeedDat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Configurações", "04 - Configurações", "{F7D13E36-F319-4C6F-BCC8-13093B69CAA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Convencoes.Console", "Convencoes.Console\Convencoes.Console.csproj", "{1CC51A14-E409-4A4D-9EBF-5C5886605439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Relacionamentos.Console", "Convencoes.Console\Relacionamentos.Console.csproj", "{1CC51A14-E409-4A4D-9EBF-5C5886605439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentApi.Console", "FluentApi.Console\FluentApi.Console.csproj", "{CFAB793A-4027-420F-BD60-CEAD46AB66FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentApi.Console", "FluentApi.Console\FluentApi.Console.csproj", "{CFAB793A-4027-420F-BD60-CEAD46AB66FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnotations.Console", "DataAnotations.Console\DataAnotations.Console.csproj", "{0891C3AE-D1FC-4E86-991C-0B93383FEB5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{CFAB793A-4027-420F-BD60-CEAD46AB66FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFAB793A-4027-420F-BD60-CEAD46AB66FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFAB793A-4027-420F-BD60-CEAD46AB66FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0891C3AE-D1FC-4E86-991C-0B93383FEB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0891C3AE-D1FC-4E86-991C-0B93383FEB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0891C3AE-D1FC-4E86-991C-0B93383FEB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0891C3AE-D1FC-4E86-991C-0B93383FEB5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{DA0861E2-D910-411B-AC22-88E369BCF271} = {33BEFC36-A8EE-4E6F-8971-8BDB511FF726}
 		{1CC51A14-E409-4A4D-9EBF-5C5886605439} = {F7D13E36-F319-4C6F-BCC8-13093B69CAA1}
 		{CFAB793A-4027-420F-BD60-CEAD46AB66FC} = {F7D13E36-F319-4C6F-BCC8-13093B69CAA1}
+		{0891C3AE-D1FC-4E86-991C-0B93383FEB5F} = {F7D13E36-F319-4C6F-BCC8-13093B69CAA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AFB5FBE6-682E-40B9-9A10-139E23C3B5A1}
