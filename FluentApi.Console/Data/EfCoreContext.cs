@@ -46,6 +46,18 @@ namespace Convencoes.Console.Data
                 .HasKey(l => l.LivroId);
 
             modelBuilder.Entity<Livro>()
+                .Property(p => p.LivroId)
+                .ValueGeneratedNever(); //Especifica que o valor para a propriedade nunca será gerado automaticamento pelo banco de dados
+
+            modelBuilder.Entity<Livro>()
+               .Property(p => p.DataExpurgo)
+               .ValueGeneratedOnAdd();  //Indica que o valor para a propriedade selecionada é gerada pelo banco de dados sempre que uma nova entidade for adicionada ao banco de dados
+
+            modelBuilder.Entity<Livro>()
+              .Property(p => p.UltimoAcesso)
+              .ValueGeneratedOnAddOrUpdate(); //Indica que o valor para a propriedade selecionada é gerada pelo banco de dados sempre que uma nova entidade for adicionada ao banco de dados ou uma entidade existente for modificada
+
+            modelBuilder.Entity<Livro>()
                 .HasIndex(l => l.Isbn);
 
             modelBuilder.Entity<Livro>()
@@ -57,7 +69,8 @@ namespace Convencoes.Console.Data
             modelBuilder.Entity<Livro>()
                 .Property(l => l.Autor)
                 .HasColumnType("varchar")
-                .HasMaxLength(100);
+                .HasMaxLength(100)
+                .IsConcurrencyToken(); //define que a propriedade vai tomar parte no gerenciamento de concorrencia
 
             modelBuilder.Entity<Livro>()
                .Property(l => l.Avaliacao)
