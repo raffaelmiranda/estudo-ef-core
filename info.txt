@@ -63,3 +63,18 @@ HasForeignKey: É usado para especificar qual propriedade é a chave estrangeira e
 Para um relacionamento UM-PARA-MUITOS
 - Se a chave estrangeira for obrigatória o relacionamento será obrigatório
 - Se a chave estrangeira for opcional o relacionamento será opcional
+
+Data Annotations:
+Indicado para pequenas aplicações
+Modelo de dados mais simples
+Mais indicada para ser usada com propriedades
+Polui o modelo de entidades com atriburos
+
+Fluent API
+Indicada para aplicações comerciais
+Modelos de domínio complexos
+Indicada para definir o relacionamentos (possui mais recursos)
+Não polui o modelo de entidades
+Sobrescreve as configrações Data Annotaions
+
+Podemos usar as duas abordagens na mesma aplicação mas não é recomendado, fluent api sobre poem os data annotations
