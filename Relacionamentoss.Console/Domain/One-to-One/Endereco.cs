@@ -1,4 +1,4 @@
-﻿namespace Convencoes.Console.Domain.One_to_One
+﻿namespace Relacionamentos.Console.Domain.One_to_One
 {
     public class Endereco //entidade dependente
     {

@@ -1,11 +1,11 @@
-﻿using Convencoes.Console.Domain.Many_to_Many;
-using Convencoes.Console.Domain.One_to_Many.Exemplo1;
-using Convencoes.Console.Domain.One_to_Many.Exemplo3;
-using Convencoes.Console.Domain.One_to_One;
-using Microsoft.EntityFrameworkCore;
-using SeedData.Console.Domain.Exemplo2;
+﻿using Microsoft.EntityFrameworkCore;
+using Relacionamentos.Console.Domain.Exemplo2;
+using Relacionamentos.Console.Domain.Many_to_Many;
+using Relacionamentos.Console.Domain.One_to_Many.Exemplo1;
+using Relacionamentos.Console.Domain.One_to_Many.Exemplo3;
+using Relacionamentos.Console.Domain.One_to_One;
 
-namespace Convencoes.Console.Data
+namespace Relacionamentos.Console.Data
 {
     public class EfCoreContext : DbContext
     {

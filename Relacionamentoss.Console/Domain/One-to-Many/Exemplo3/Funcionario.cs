@@ -1,4 +1,4 @@
-﻿namespace Convencoes.Console.Domain.One_to_Many.Exemplo3
+﻿namespace Relacionamentos.Console.Domain.One_to_Many.Exemplo3
 {
     public class Funcionario //entidade dependente
     {

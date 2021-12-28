@@ -1,4 +1,4 @@
-﻿namespace Convencoes.Console.Domain.Many_to_Many
+﻿namespace Relacionamentos.Console.Domain.Many_to_Many
 {
     public class Curso
     {

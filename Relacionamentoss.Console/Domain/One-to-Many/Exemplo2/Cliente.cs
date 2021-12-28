@@ -1,4 +1,4 @@
-﻿namespace SeedData.Console.Domain.Exemplo2
+﻿namespace Relacionamentos.Console.Domain.Exemplo2
 {
     public class Cliente
     {

@@ -1,4 +1,4 @@
-﻿namespace Convencoes.Console.Domain.One_to_Many.Exemplo1
+﻿namespace Relacionamentos.Console.Domain.One_to_Many.Exemplo1
 {
     public class Blog
     {
