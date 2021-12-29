@@ -10,6 +10,8 @@ using (var contexto = new EfCoreContext())
 
     AlterandoProduto(contexto);
 
+    ExcluirProduto(contexto);
+
     Console.ReadKey();
 }
 
@@ -32,7 +34,7 @@ void ExibirEstado(IEnumerable<EntityEntry> entries)
     Console.WriteLine(Environment.NewLine);
 
     foreach (var entrada in entries)
-        Console.WriteLine($"Estado da entidade : {entrada.State}");
+        Console.WriteLine($"Produto: {((Produto)entrada.Entity).Nome} - Estado da entidade : {entrada.State}");
     
 }
 
@@ -49,8 +51,6 @@ void IncluirProduto(EfCoreContext contexto)
     contexto.Produtos?.Add(novoProduto);
     //contexto.SaveChanges();
 
-    MostrarProdutos(contexto);
-
     ExibirEstado(contexto.ChangeTracker.Entries());
 }
 
@@ -64,7 +64,24 @@ void AlterandoProduto(EfCoreContext contexto)
 
     //contexto.SaveChanges();
 
-    MostrarProdutos(contexto);
+    ExibirEstado(contexto.ChangeTracker.Entries());
+}
+void ExcluirProduto(EfCoreContext contexto)
+{
+    Console.WriteLine("Excluindo o produto 2 :  Remove ");
+
+    Produto produtoExcluir = contexto.Produtos.Find(2);
+
+    if (produtoExcluir != null)
+        contexto.Remove(produtoExcluir);
+
+    //exbir o estado do produto excluido
+    var entry = contexto.Entry(produtoExcluir);
+    Console.WriteLine(entry);
+
+    //contexto.SaveChanges();
 
     ExibirEstado(contexto.ChangeTracker.Entries());
 }
+
+
