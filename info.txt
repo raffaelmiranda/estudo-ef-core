@@ -78,3 +78,12 @@ Não polui o modelo de entidades
 Sobrescreve as configrações Data Annotaions
 
 Podemos usar as duas abordagens na mesma aplicação mas não é recomendado, fluent api sobre poem os data annotations
+
+Quando você cria uma consulta e usa operadores LINQ, você está criando simplesmente uma representação na memória da consulta.
+As consutlas são executadas em um banco de dados apenas quando os dados são consumidos.
+Isso é conhecido como execução adiada (deferred execution).
+Os dados são consumidos quando você usa um laço for/foreach ou um método de finalização na consulta, como ToList(), Sum() ou Count()
+
+Query in LINQ
+https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ef/language-reference/queries-in-linq-to-entities
+

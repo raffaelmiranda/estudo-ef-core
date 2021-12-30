@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Relacionamentos.Console", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeTracker.Console", "ChangeTracker.Console\ChangeTracker.Console.csproj", "{6B341066-4FEF-4B3C-AC48-CBDB5E8CE608}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostraSQL.Console", "MostraSQL.Console\MostraSQL.Console.csproj", "{B80C6327-322A-4384-A575-3C895EF9AF99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MostraSQL.Console", "MostraSQL.Console\MostraSQL.Console.csproj", "{B80C6327-322A-4384-A575-3C895EF9AF99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsultaDados.Console", "ConsultaDados.Console\ConsultaDados.Console.csproj", "{FA1A4528-8EC7-4413-A474-2937B744E9A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B80C6327-322A-4384-A575-3C895EF9AF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B80C6327-322A-4384-A575-3C895EF9AF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B80C6327-322A-4384-A575-3C895EF9AF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA1A4528-8EC7-4413-A474-2937B744E9A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1A4528-8EC7-4413-A474-2937B744E9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA1A4528-8EC7-4413-A474-2937B744E9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1A4528-8EC7-4413-A474-2937B744E9A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
