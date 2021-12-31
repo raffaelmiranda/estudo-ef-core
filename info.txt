@@ -96,3 +96,9 @@ DbSet.FromSql()
 4 - A consulta SQL não pode conter dados relacionados
 5 - As instruções SQL, diferentes de SELECT, são reconhecidas automaticamente como não combináveis.
 
+
+JOINS em LINQ
+
+https://www.tektutorialshub.com/entity-framework/join-query-entity-framework/
+https://www.tutorialsteacher.com/linq/linq-joining-operator-join
+

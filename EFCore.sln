@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChangeTracker.Console", "Ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MostraSQL.Console", "MostraSQL.Console\MostraSQL.Console.csproj", "{B80C6327-322A-4384-A575-3C895EF9AF99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsultaDados.Console", "ConsultaDados.Console\ConsultaDados.Console.csproj", "{FA1A4528-8EC7-4413-A474-2937B744E9A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsultaDados.Console", "ConsultaDados.Console\ConsultaDados.Console.csproj", "{FA1A4528-8EC7-4413-A474-2937B744E9A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joins.Console", "Joins.Console\Joins.Console.csproj", "{F0C6F4D4-DD9F-4F73-BB08-18F47959719C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{FA1A4528-8EC7-4413-A474-2937B744E9A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA1A4528-8EC7-4413-A474-2937B744E9A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA1A4528-8EC7-4413-A474-2937B744E9A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0C6F4D4-DD9F-4F73-BB08-18F47959719C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C6F4D4-DD9F-4F73-BB08-18F47959719C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C6F4D4-DD9F-4F73-BB08-18F47959719C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C6F4D4-DD9F-4F73-BB08-18F47959719C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
