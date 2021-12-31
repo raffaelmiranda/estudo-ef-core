@@ -1,6 +1,7 @@
 ﻿using ConsultaDados.Console.Data;
 using ConsultaDados.Console.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 var contexto = new EfCoreContext();
 
@@ -18,7 +19,13 @@ var contexto = new EfCoreContext();
 
 //ParticionamentoDados(contexto);
 
-ConsultaSQLNativas();
+//ConsultaSQLNativas();
+
+//ConsultasComAcompanhamento(contexto);
+
+//ConsultasSemAcompanhamento(contexto);
+
+//ConsultasSemAcompanhamento2(contexto);
 
 
 void QuerySintax(EfCoreContext contexto)
@@ -267,5 +274,51 @@ void ConsultaSQLNativas()
         Console.WriteLine($"{autor.Id} {autor.Nome}");
     }
 }
+
+void ConsultasComAcompanhamento(EfCoreContext contexto)
+{
+    var autores1 = contexto.Autores;
+    var autor1 = autores1.First();
+    autor1.Nome = "XXXXXXXXX";
+
+    ExibirEstado(contexto.ChangeTracker.Entries());
+
+    contexto.SaveChanges();
+}
+
+void ConsultasSemAcompanhamento(EfCoreContext contexto)
+{
+
+    var autores1 = contexto.Autores.AsNoTracking();
+    var autor1 = autores1.First();
+    autor1.Nome = "XXXXXXXXX";
+
+    var entry2 = contexto.Entry(autor1);
+    Console.WriteLine(entry2.Entity.ToString() + " => " + entry2.State);
+    //contexto.SaveChanges();
+}
+
+void ConsultasSemAcompanhamento2(EfCoreContext contexto)
+{
+    contexto.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+    var autores1 = contexto.Autores;
+    var autor1 = autores1.First();
+    autor1.Nome = "XXXXXXXXX";
+
+    var entry2 = contexto.Entry(autor1);
+    Console.WriteLine(entry2.Entity.ToString() + " => " + entry2.State);
+    contexto.SaveChanges();
+}
+
+void ExibirEstado(IEnumerable<EntityEntry> entries)
+{
+    Console.WriteLine(Environment.NewLine);
+
+    foreach (var entrada in entries)
+        Console.WriteLine($"Estado da entidade : {entrada.State}");
+
+}
+
 
 Console.ReadKey();
