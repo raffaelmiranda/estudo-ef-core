@@ -1,5 +1,6 @@
 ﻿using ConsultaDados.Console.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ConsultaDados.Console.Data
 {
@@ -12,6 +13,8 @@ namespace ConsultaDados.Console.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=SLT-002411\\SQLEXPRESS;Database=EfCoreDb;Trusted_Connection=True");
+            optionsBuilder
+              .UseLoggerFactory(LoggerFactory.Create(b => b.AddConsole().AddFilter("", LogLevel.Information)));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

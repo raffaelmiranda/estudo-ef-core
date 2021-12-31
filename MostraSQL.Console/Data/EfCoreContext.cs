@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Logging;
 using MostraSQL.Console.Domain;
 using System.Diagnostics;
 
@@ -14,9 +16,19 @@ namespace MostraSQL.Console.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=SLT-002411\\SQLEXPRESS;Database=EfCoreDb;Trusted_Connection=True");
-            
+
             //Log Console
-            optionsBuilder.LogTo(System.Console.WriteLine);
+            //optionsBuilder.LogTo(System.Console.WriteLine);
+
+            //Log Console
+            optionsBuilder
+               .UseLoggerFactory(LoggerFactory.Create(b => b.AddConsole().AddFilter("", LogLevel.Information)));
+
+            //Log Console
+            //optionsBuilder
+            //    .LogTo(System.Console.WriteLine, new[] {  DbLoggerCategory.Database.Command.Name }, LogLevel.Information, DbContextLoggerOptions.SingleLine | DbContextLoggerOptions.UtcTime)
+            //    .EnableSensitiveDataLogging(true)
+            //    .EnableDetailedErrors();
 
             //Log Janela Ouput
             //optionsBuilder.LogTo(message => Debug.WriteLine(message));

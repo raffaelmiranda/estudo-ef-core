@@ -87,3 +87,12 @@ Os dados são consumidos quando você usa um laço for/foreach ou um método de fina
 Query in LINQ
 https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ef/language-reference/queries-in-linq-to-entities
 
+SQL NATIVAS
+DbSet.FromSql()
+
+1 - As consultas SQL só podem ser usadas para retornar tipos de entidade que fazem parte do seu modelo.
+2 - A consulta SQL deve retornar dados para todas as propriedades da entidade ou tipo de consulta.
+3 - Os nome das colunas no conjunto de resultados deve corresponder aos nomes das colunas para as quais as propriedades são mapeadas
+4 - A consulta SQL não pode conter dados relacionados
+5 - As instruções SQL, diferentes de SELECT, são reconhecidas automaticamente como não combináveis.
+

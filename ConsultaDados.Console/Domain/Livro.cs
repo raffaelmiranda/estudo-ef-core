@@ -17,6 +17,7 @@ namespace ConsultaDados.Console.Domain
         [Required]
         [MaxLength(50)]
         public string? Tipo { get; set; }
+        [Column(TypeName = "decimal(5,2)")]
         public decimal Preco { get; set; }
         public int AutorId { get; set; }
         public Autor? Autor { get; set; }

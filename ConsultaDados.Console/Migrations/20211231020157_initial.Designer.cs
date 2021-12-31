@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsultaDados.Console.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
-    [Migration("20211230185512_initial")]
+    [Migration("20211231020157_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,7 +145,7 @@ namespace ConsultaDados.Console.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Tipo")
                         .IsRequired()

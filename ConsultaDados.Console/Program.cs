@@ -1,5 +1,6 @@
 ﻿using ConsultaDados.Console.Data;
 using ConsultaDados.Console.Domain;
+using Microsoft.EntityFrameworkCore;
 
 var contexto = new EfCoreContext();
 
@@ -15,7 +16,10 @@ var contexto = new EfCoreContext();
 
 //ConsultaElementoAgregacao(contexto);
 
-FiltraDados(contexto);
+//ParticionamentoDados(contexto);
+
+ConsultaSQLNativas();
+
 
 void QuerySintax(EfCoreContext contexto)
 {
@@ -204,6 +208,64 @@ void FiltraDados(EfCoreContext contexto)
     }
 
 
+}
+
+void ParticionamentoDados(EfCoreContext contexto)
+{
+    Console.WriteLine("============= SKIP =============");
+    var autores1 = contexto.Autores.OrderBy(a => a.Id).Skip(3).ToList();
+    foreach (var autor in autores1)
+    {
+        Console.WriteLine($"{autor.Id} {autor.Nome}");
+    }
+
+    Console.WriteLine("============= TAKE =============");
+    var autores2 = contexto.Autores.OrderBy(a => a.Id).Take(3).ToList();
+    foreach (var autor in autores2)
+    {
+        Console.WriteLine($"{autor.Id} {autor.Nome}");
+    }
+
+    Console.WriteLine("============= SKIP/TAKE =============");
+    var autores3 = contexto.Autores.OrderBy(a => a.Id).Skip(3).Take(3).ToList();
+    foreach (var autor in autores3)
+    {
+        Console.WriteLine($"{autor.Id} {autor.Nome}");
+    }
+}
+
+void ConsultaSQLNativas()
+{
+    Console.WriteLine("============= Executa SQL com retorno =============");
+    var autores1 = contexto.Autores.FromSqlRaw("SELECT * FROM dbo.Autores where Id > 4").ToList();
+    foreach (var autor in autores1)
+    {
+        Console.WriteLine($"{autor.Id} {autor.Nome}");
+    }
+
+    Console.WriteLine("============= Executa Stored Procedure com retorno =============");
+    var autores2 = contexto.Autores.FromSqlInterpolated($" EXECUTE dbo.AutorPorId {4}").ToList();
+    foreach (var autor in autores2)
+    {
+        Console.WriteLine($"{autor.Id} {autor.Nome}");
+    }
+
+    Console.WriteLine("============= Executa SQL sem retorno =============");
+    var linhasAfetadas1 = contexto.Database.ExecuteSqlRaw("UPDATE Autores set Nome = 'Teste1' WHERE Id = {0}", 1);
+
+    var linhasAfetadas2 = contexto.Database.ExecuteSqlInterpolated($"UPDATE Autores set Nome = 'Teste2' WHERE Id = {1}");
+
+    Console.WriteLine("============= Executa Stored Procedure com retorno =============");
+    string nome = "Janis Joplin";
+    string email = "janis@email.com";
+    string pais = "USA";
+    contexto.Database.ExecuteSqlInterpolated($" EXECUTE dbo.CriarAutor {nome}, {email}, {pais}");
+
+    var autores3 = contexto.Autores.ToList();
+    foreach (var autor in autores3)
+    {
+        Console.WriteLine($"{autor.Id} {autor.Nome}");
+    }
 }
 
 Console.ReadKey();
