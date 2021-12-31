@@ -6,15 +6,16 @@ var contexto = new EfCoreContext();
 //PopulaBancoDados(contexto);
 
 #region Query Sintax
-InnerJoin1(contexto);
+//InnerJoin1(contexto);
 LeftJoin1(contexto);
+RightJoin1(contexto);
 #endregion
 
 #region Method Sintax
-InnerJoin2A(contexto);
-InnerJoin2B(contexto);
-LeftJoin2A(contexto);
-LeftJoin2B(contexto);
+//InnerJoin2A(contexto);
+//InnerJoin2B(contexto);
+//LeftJoin2A(contexto);
+//LeftJoin2B(contexto);
 #endregion
 
 void PopulaBancoDados(EfCoreContext contexto)
@@ -70,6 +71,26 @@ void LeftJoin1(EfCoreContext contexto)
     foreach (var resultado in leftOuterJoin)
     {
         Console.WriteLine(resultado.Nome + "\t\t" + resultado.Cargo + "\t\t" + resultado.Setor);
+    }
+}
+
+void RightJoin1(EfCoreContext contexto)
+{
+    Console.WriteLine("============= Righ Join 1 =============");
+    var rightOuterJoin = from s in contexto.Setores
+                        join f in contexto.Funcionarios on s.SetorId equals f.SetorId into funci
+                        from funcionario in funci.DefaultIfEmpty()
+                        select new
+                        {
+                            Nome = funcionario.FuncionarioNome,
+                            Cargo = funcionario.FuncionarioCargo,
+                            Setor = s.SetorNome
+                        };
+
+    Console.WriteLine("Funcionario\t\tCargo\t\tSetor");
+    foreach (var resultado in rightOuterJoin)
+    {
+        Console.WriteLine(resultado.Setor + "\t\t" + resultado.Nome + "\t\t" + resultado.Cargo);
     }
 }
 #endregion
