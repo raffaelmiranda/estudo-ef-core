@@ -10,14 +10,15 @@ var contexto = new EfCoreContext();
 //LeftJoin1(contexto);
 //RightJoin1(contexto);
 //FullOutterJoin1(contexto);
-
+//CrossJoin1(contexto);
+//GroupJoin1(contexto);
 
 //Method Sintax
 //InnerJoin2A(contexto);
 //InnerJoin2B(contexto);
 //LeftJoin2A(contexto);
 //LeftJoin2B(contexto);
-
+GroupJoin2(contexto);
 
 void PopulaBancoDados(EfCoreContext contexto)
 {
@@ -35,7 +36,7 @@ void PopulaBancoDados(EfCoreContext contexto)
     }
 }
 
-#region Query Sintax
+//Query Sintax
 void InnerJoin1(EfCoreContext contexto)
 {
     Console.WriteLine("============= Inner Join 1 =============");
@@ -59,8 +60,8 @@ void LeftJoin1(EfCoreContext contexto)
 {
     Console.WriteLine("============= Left Join 1 =============");
     var leftOuterJoin = from f in contexto.Funcionarios
-                        join s in contexto.Setores on f.SetorId equals s.SetorId into set
-                        from setor in set.DefaultIfEmpty()
+                        join s in contexto.Setores on f.SetorId equals s.SetorId into grouping
+                        from setor in grouping.DefaultIfEmpty()
                         select new
                         {
                             Nome = f.FuncionarioNome,
@@ -128,9 +129,62 @@ void FullOutterJoin1(EfCoreContext contexto)
             Console.WriteLine(resultado.Nome + "\t\t" + resultado.Cargo + "\t\t" + resultado.Setor);
     }
 }
-#endregion
 
-#region Method Sintax
+void CrossJoin1(EfCoreContext contexto)
+{
+    var crossJoin = from f in contexto.Funcionarios
+                    from s in contexto.Setores 
+                    orderby f.FuncionarioNome
+                    select new
+                    {
+                        Nome = f.FuncionarioNome,
+                        Cargo = f.FuncionarioCargo,
+                        Setor = s.SetorNome
+                    }
+                    ;
+
+    Console.WriteLine("Funcionario\t\tCargo\t\t\tSetor");
+
+    Console.WriteLine("Funcionario\t\tCargo\t\tSetor");
+    foreach (var resultado in crossJoin)
+    {
+        Console.WriteLine(resultado.Nome + "\t\t" + resultado.Cargo + "\t\t" + resultado.Setor);
+    }
+}
+
+void GroupJoin1(EfCoreContext contexto)
+{
+    var groupJoin = from s in contexto.Setores
+                    join e in contexto.Funcionarios on s.SetorId equals e.SetorId into funci
+                    select new
+                    {
+                        CodigoSetor = s.SetorId,
+                        NomeSetor = s.SetorNome,
+                        Funcionarios = funci
+                    };
+
+    foreach (var resultado in groupJoin)
+    {
+        Console.WriteLine("Setor:" + resultado.CodigoSetor + " - " + resultado.NomeSetor);
+
+        if (resultado.Funcionarios != null && resultado.Funcionarios.Count() > 0)
+        {
+            Console.WriteLine("Nome\t\t\tCargo");
+
+            foreach (var funci in resultado.Funcionarios)
+            {
+                Console.WriteLine(funci.FuncionarioNome + "\t\t" + funci.FuncionarioCargo);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Setor não tem funcionários.");
+        }
+        Console.WriteLine("");
+    }
+}
+
+//Method Sintax
 void InnerJoin2A(EfCoreContext contexto)
 {
     Console.WriteLine("============= Inner Join 2 - A =============");
@@ -215,7 +269,26 @@ void LeftJoin2B(EfCoreContext contexto)
         Console.WriteLine(resultado.Nome + "\t\t" + resultado.Cargo + "\t\t" + resultado.Setor);
     }
 }
-#endregion
+
+void GroupJoin2(EfCoreContext contexto)
+{
+    var groupJoin = contexto.Setores.GroupJoin(contexto.Funcionarios,
+                                s => s.SetorId,         
+                                f => f.SetorId,       
+                                (f, funcionariosGrupo) => new
+                                {
+                                    Funcionarios = funcionariosGrupo,
+                                    NomeSetor = f.SetorNome
+                                });
+
+    foreach (var item in groupJoin)
+    {
+        Console.WriteLine(item.NomeSetor);
+
+        foreach (var stud in item.Funcionarios)
+            Console.WriteLine($"\t {stud.FuncionarioNome}");
+    }
+}
 
 Console.ReadKey();
 
