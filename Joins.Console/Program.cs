@@ -5,18 +5,19 @@ var contexto = new EfCoreContext();
 
 //PopulaBancoDados(contexto);
 
-#region Query Sintax
+//Query Sintax
 //InnerJoin1(contexto);
-LeftJoin1(contexto);
-RightJoin1(contexto);
-#endregion
+//LeftJoin1(contexto);
+//RightJoin1(contexto);
+//FullOutterJoin1(contexto);
 
-#region Method Sintax
+
+//Method Sintax
 //InnerJoin2A(contexto);
 //InnerJoin2B(contexto);
 //LeftJoin2A(contexto);
 //LeftJoin2B(contexto);
-#endregion
+
 
 void PopulaBancoDados(EfCoreContext contexto)
 {
@@ -93,6 +94,40 @@ void RightJoin1(EfCoreContext contexto)
         Console.WriteLine(resultado.Setor + "\t\t" + resultado.Nome + "\t\t" + resultado.Cargo);
     }
 }
+
+void FullOutterJoin1(EfCoreContext contexto)
+{
+    var leftOuterJoin = from f in contexto.Funcionarios
+                        join s in contexto.Setores on f.SetorId equals s.SetorId into set
+                        from setor in set.DefaultIfEmpty()
+                        select new
+                        {
+                            Nome = f.FuncionarioNome,
+                            Cargo = f.FuncionarioCargo,
+                            Setor = setor.SetorNome
+                        };
+
+    var rightOuterJoin = from s in contexto.Setores
+                         join f in contexto.Funcionarios on s.SetorId equals f.SetorId into funci
+                         from funcionario in funci.DefaultIfEmpty()
+                         select new
+                         {
+                             Nome = funcionario.FuncionarioNome,
+                             Cargo = funcionario.FuncionarioCargo,
+                             Setor = s.SetorNome
+                         };
+
+    var outterJoin = leftOuterJoin.Union(rightOuterJoin);
+
+    Console.WriteLine("Funcionario\t\tCargo\t\tSetor");
+    foreach (var resultado in outterJoin)
+    {
+        if (!string.IsNullOrEmpty(resultado.Nome))
+            Console.WriteLine(resultado.Nome + "\t\t" + resultado.Cargo + "\t" + resultado.Setor);
+        else
+            Console.WriteLine(resultado.Nome + "\t\t" + resultado.Cargo + "\t\t" + resultado.Setor);
+    }
+}
 #endregion
 
 #region Method Sintax
@@ -100,7 +135,7 @@ void InnerJoin2A(EfCoreContext contexto)
 {
     Console.WriteLine("============= Inner Join 2 - A =============");
 
-    var innerJoin1 = contexto.Funcionarios                   //tabela externa
+    var innerJoin1 = contexto.Funcionarios                  //tabela externa
                         .Join(contexto.Setores,             //tabela interna
                             f => f.SetorId, s => s.SetorId, //condição para unir as tabelas: 1 argumento é a tabela externa e o segundo argumento é a tabela interna
                             (f, s) => new                   //Projeção do resultado para um novo tipo
