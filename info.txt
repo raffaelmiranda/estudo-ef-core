@@ -102,3 +102,17 @@ JOINS em LINQ
 https://www.tektutorialshub.com/entity-framework/join-query-entity-framework/
 https://www.tutorialsteacher.com/linq/linq-joining-operator-join
 
+
+Carregamento de informações nas propriedades
+
+Lazy loading: 
+- Os dados são carregados sob demanda, quando a propriedades de navegação for acessada
+- Instalar o pacote Microsoft.EntityFrameworkCore.Proxies
+- Habilitar o pacote
+- O EF Core,v ai habilitar o lazy loading para qualquer propriedade de navegação que pode ser sobrescrita ou seja:
+	- A propriedade de navegação deve ser virtual
+	- Deve estar em uma classe que poder herdada
+- Lazy Loading pode causar problemas de desempenho (select n+1)
+
+
+
