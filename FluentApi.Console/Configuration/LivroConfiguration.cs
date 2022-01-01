@@ -8,7 +8,6 @@ namespace FluentApi.Console.Configuration
     {
         public void Configure(EntityTypeBuilder<Livro> modelBuilder)
         {
-            //------entidade Livro--------------------
             modelBuilder
                 .Property(p => p.Titulo)
                 .HasColumnName("Descricao")

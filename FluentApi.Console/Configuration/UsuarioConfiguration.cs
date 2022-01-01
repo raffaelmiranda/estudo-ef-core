@@ -8,7 +8,6 @@ namespace FluentApi.Console.Configuration
     {
         public void Configure(EntityTypeBuilder<Usuario> modelBuilder)
         {
-            //------entidade Usuario --------------------
             modelBuilder
                    .HasKey(p => p.Codigo);
 
