@@ -10,7 +10,7 @@
         public virtual Autor? Autor { get; set; }
         public int AutorId { get; set; }
 
-        public int EditorId { get; set; }
+        public int? EditorId { get; set; }
         public virtual Editor? Editor { get; set; }
 
         public override string ToString()

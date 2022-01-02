@@ -20,6 +20,11 @@ namespace EntidadesRelacionadas.Console.Configuration
                 .HasMaxLength(50)
                 .IsRequired();
 
+            modelBuilder
+               .Property(p => p.EditorId)
+               .HasColumnType("int")
+               .IsRequired(false);
+
             //um-para-muitos :  Livros - Autor
             modelBuilder
               .HasOne(s => s.Autor)

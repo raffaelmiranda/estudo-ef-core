@@ -68,7 +68,7 @@ namespace EntidadesRelacionadas.Console.Migrations
                     Tipo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     AnoLancamento = table.Column<int>(type: "int", nullable: false),
                     AutorId = table.Column<int>(type: "int", nullable: false),
-                    EditorId = table.Column<int>(type: "int", nullable: false)
+                    EditorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,8 +83,7 @@ namespace EntidadesRelacionadas.Console.Migrations
                         name: "FK_Livros_Editores_EditorId",
                         column: x => x.EditorId,
                         principalTable: "Editores",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(

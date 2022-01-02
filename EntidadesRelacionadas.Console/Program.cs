@@ -1,5 +1,6 @@
 ﻿
 using EntidadesRelacionadas.Console.Data;
+using EntidadesRelacionadas.Console.Domain;
 using Microsoft.EntityFrameworkCore;
 
 var contexto = new EfCoreContext();
@@ -14,7 +15,11 @@ var contexto = new EfCoreContext();
 //ExplicitLoadingComQuery(contexto);
 //ExplicitLoadingComIsLoaded(contexto);
 
-LazyLoading(contexto);
+//LazyLoading(contexto);
+
+//SalvarEntidadesRelacionadas(contexto);
+//SalvarEntidadesRelacionadas2(contexto);
+//SalvarEntidadesRelacionadas3(contexto);
 
 void SemEagerLoding(EfCoreContext contexto)
 {
@@ -82,10 +87,10 @@ void ExplicitLoading(EfCoreContext contexto)
 {
     var resultado = contexto.Autores.Single(b => b.Id == 1);
 
-   
-    contexto.Entry(resultado).Collection(b => b.Livros).Load(); 
 
-    contexto.Entry(resultado).Reference(b => b.Biografia).Load(); 
+    contexto.Entry(resultado).Collection(b => b.Livros).Load();
+
+    contexto.Entry(resultado).Reference(b => b.Biografia).Load();
 
     Console.WriteLine(resultado.Nome);
     Console.WriteLine(resultado.Biografia.Nacionalidade);
@@ -151,6 +156,46 @@ void LazyLoading(EfCoreContext contexto)
             Console.WriteLine("\t\t" + l.Titulo);
         }
     }
+}
+
+void SalvarEntidadesRelacionadas(EfCoreContext contexto)
+{
+    //Entidade autor nova com entidades livros novas
+    var autor = new Autor
+    {
+        Nome = "Clarice Lispector",
+        Email = "clarice@email.com",
+        Livros = new List<Livro>
+        {
+            new Livro { Titulo = "Água viva", Tipo = "Romance", AnoLancamento = 1973 },
+            new Livro { Titulo = "Laço de Familia", Tipo = "Contos", AnoLancamento = 1960 }
+        }
+    };
+
+    contexto.Autores.Add(autor);
+    contexto.SaveChanges();
+}
+
+void SalvarEntidadesRelacionadas2(EfCoreContext contexto)
+{
+    //Entidade autor ja existente
+    //Entidade livro novo
+    var autor = contexto.Autores.Include(l => l.Livros).First();
+    var livro = new Livro { Titulo = "Perto do coração selvagem", Tipo = "Romance", AnoLancamento = 1943 };
+    
+    autor.Livros.Add(livro);
+    contexto.SaveChanges();
+}
+
+void SalvarEntidadesRelacionadas3(EfCoreContext contexto)
+{
+    //Entidade autor novo
+    //Entidade livro existente
+    var autor = new Autor { Nome = "Fernando Pessoa", Email = "pessoa@email.com" };
+    var livro = contexto.Livros.OrderBy(l => l.Id).Last();
+  
+    livro.Autor = autor;
+    contexto.SaveChanges();
 }
 
 Console.ReadKey();

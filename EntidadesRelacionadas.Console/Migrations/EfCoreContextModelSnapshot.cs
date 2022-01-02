@@ -200,7 +200,7 @@ namespace EntidadesRelacionadas.Console.Migrations
                     b.Property<int>("AutorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EditorId")
+                    b.Property<int?>("EditorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Tipo")
@@ -344,9 +344,7 @@ namespace EntidadesRelacionadas.Console.Migrations
 
                     b.HasOne("EntidadesRelacionadas.Console.Domain.Editor", "Editor")
                         .WithMany("Livros")
-                        .HasForeignKey("EditorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EditorId");
 
                     b.Navigation("Autor");
 

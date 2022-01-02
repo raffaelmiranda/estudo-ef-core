@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntidadesRelacionadas.Console.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
-    [Migration("20220101214249_initial")]
+    [Migration("20220102004413_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -202,7 +202,7 @@ namespace EntidadesRelacionadas.Console.Migrations
                     b.Property<int>("AutorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EditorId")
+                    b.Property<int?>("EditorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Tipo")
@@ -346,9 +346,7 @@ namespace EntidadesRelacionadas.Console.Migrations
 
                     b.HasOne("EntidadesRelacionadas.Console.Domain.Editor", "Editor")
                         .WithMany("Livros")
-                        .HasForeignKey("EditorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EditorId");
 
                     b.Navigation("Autor");
 
