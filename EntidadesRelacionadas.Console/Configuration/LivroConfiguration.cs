@@ -29,7 +29,8 @@ namespace EntidadesRelacionadas.Console.Configuration
             modelBuilder
               .HasOne(s => s.Autor)
                 .WithMany(g => g.Livros)
-                   .HasForeignKey(s => s.AutorId);
+                   .HasForeignKey(s => s.AutorId)
+                   .OnDelete(DeleteBehavior.Restrict);
 
             //um-para-muitos :  Livro-Editor
             modelBuilder

@@ -20,6 +20,8 @@ var contexto = new EfCoreContext();
 //SalvarEntidadesRelacionadas(contexto);
 //SalvarEntidadesRelacionadas2(contexto);
 //SalvarEntidadesRelacionadas3(contexto);
+//ExcluirEntidadesRelacionadas(contexto);
+//ExcluirEntidadesRelacionadas2(contexto);
 
 void SemEagerLoding(EfCoreContext contexto)
 {
@@ -196,6 +198,33 @@ void SalvarEntidadesRelacionadas3(EfCoreContext contexto)
   
     livro.Autor = autor;
     contexto.SaveChanges();
+}
+
+void ExcluirEntidadesRelacionadas(EfCoreContext contexto)
+{
+    var autor = contexto.Autores.Single(a => a.Id == 6);
+
+    contexto.Autores.Remove(autor);
+    contexto.SaveChanges();
+}
+
+void ExcluirEntidadesRelacionadas2(EfCoreContext contexto)
+{
+    //Não delete por causa do tipo de exclusão restrict
+    //var editor = contexto.Editores.Find(3);
+
+    //contexto.Editores.Remove(editor);
+    //contexto.SaveChanges();
+
+    var editor = contexto.Editores.Find(3);
+
+    var livros = contexto.Livros.Where(e => e.Editor.Id == 3);
+    foreach (var item in livros)
+        contexto.Livros.Remove(item);
+    
+    contexto.Editores.Remove(editor);
+    contexto.SaveChanges();
+
 }
 
 Console.ReadKey();
