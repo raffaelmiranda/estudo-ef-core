@@ -13,7 +13,7 @@ dotnet ef dbcontext scaffold "Server=SLT-002411\SQLEXPRESS;Database=Northwind;Tr
 
 =============== 02 - CodeFirst ===============
 Executar o comando para criar o migrations
-dotnet ef migrations add initial 
+dotnet ef migrations add initial
 dotnet ef database update
 
 Executar o comando reverter o migrations
